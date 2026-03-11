@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 const AUTH_COOKIE_NAME = "auth_token";
 const USERNAME_COOKIE_NAME = "auth_username";
-const AUTH_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+const AUTH_COOKIE_MAX_AGE = 60 * 60;
 
 export async function POST(request: Request) {
   const body = (await request.json()) as {

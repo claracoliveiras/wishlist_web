@@ -1,9 +1,9 @@
 import Collection from "@/components/profile/Collection";
+import ProfileAddButton from "@/components/profile/ProfileAddButton";
 import ProfileButton from "@/components/profile/ProfileButton";
 import ProfileHeader from "@/components/profile/ProfileHeader";
-import WishlistItem from "@/components/profile/WishlistItem";
-import { getUserProfile } from "@/lib/api/profile";
-import { UserRoundPlus, UserRoundX } from "lucide-react";
+import WishlistItem from "@/components/wishlist/WishlistItem";
+import { HeartPlus, UserRoundPlus, UserRoundX } from "lucide-react";
 
 export default async function Page({
   params,
@@ -11,19 +11,17 @@ export default async function Page({
   params: Promise<{ username: string }>
 }) {
   const { username } = await params;
-  const profileData = await getUserProfile({username});
 
   return (
     <div className="flex flex-col justify-center items-center my-6 w-[50vw] mx-auto">
         <ProfileHeader
           username={ username }
-          banner_picture={profileData.banner_picture}
-          profile_picture={profileData.profile_picture}
         />
 
         <div className="mt-4">
           <ProfileButton icon={UserRoundPlus}/>
           <ProfileButton icon={UserRoundX}/>
+          <ProfileAddButton/>
         </div>
 
         {/* ADDING COLLECTIONS */}
