@@ -1,6 +1,7 @@
 "use client";
 
 import { createItem } from "@/lib/api/items";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 type AddingPopUpProps = {
@@ -10,15 +11,14 @@ type AddingPopUpProps = {
 export default function AddingPopUp({ onClose } : AddingPopUpProps) {
     const [item_url, setUrl] = useState("");
     const [item_img, setImg] = useState("");
+    const router = useRouter();
     
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        try {
-            await createItem({ item_url, item_img });
-        } catch (e) {
-            throw new Error(`Error: ${e}`); 
-        }
+        await createItem({ item_url, item_img });
+            onClose();
+            router.refresh();
     }
 
     return <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
