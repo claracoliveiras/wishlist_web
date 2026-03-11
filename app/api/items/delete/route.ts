@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { getBackendUrl } from "@/lib/backend-url";
 
 export async function DELETE(request: Request) {
     const body = (await request.json()) as {
@@ -12,7 +13,7 @@ export async function DELETE(request: Request) {
     const extractedToken = parsedCookie.access_token;
 
     try {
-        const response = await fetch(`http://localhost:8000/items/${body.id}`, {
+        const response = await fetch(getBackendUrl(`/items/${body.id}`), {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

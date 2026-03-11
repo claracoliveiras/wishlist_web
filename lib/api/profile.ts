@@ -1,3 +1,5 @@
+import { getBackendUrl } from "@/lib/backend-url";
+
 export type ProfileRequest = {
     username: string;
 }
@@ -11,7 +13,7 @@ export type ProfileResponse = {
 }
 
 export async function getUserProfile(payload: ProfileRequest): Promise<ProfileResponse> {
-    const res = await fetch(`http://localhost:8000/users/by-username/${payload.username}`, {
+    const res = await fetch(getBackendUrl(`/users/by-username/${payload.username}`), {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",

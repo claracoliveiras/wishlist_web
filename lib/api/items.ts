@@ -1,3 +1,5 @@
+import { getBackendUrl } from "@/lib/backend-url";
+
 export type CreateItemRequest = {
     item_url: string;
     item_img: string;
@@ -61,7 +63,7 @@ export async function listItems(username: string): Promise<WishlistItemData[]> {
     const user = await getUserByUsername(username);
     const extractedUser = user.id;
 
-    const res = await fetch(`http://localhost:8000/items?owner_id=${extractedUser}`, {
+    const res = await fetch(getBackendUrl(`/items?owner_id=${extractedUser}`), {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -79,7 +81,7 @@ export async function listItems(username: string): Promise<WishlistItemData[]> {
 }
 
 export async function getUserByUsername( username: string ) {
-    const res = await fetch(`http://localhost:8000/users/by-username/${username}`, {
+    const res = await fetch(getBackendUrl(`/users/by-username/${username}`), {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",

@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Set `BACKEND_URL` in `.env`, then open the app in your browser at the URL shown by the dev server.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

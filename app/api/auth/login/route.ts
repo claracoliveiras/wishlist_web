@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { getBackendUrl } from "@/lib/backend-url";
 
 const AUTH_COOKIE_NAME = "auth_token";
 const USERNAME_COOKIE_NAME = "auth_username";
@@ -15,7 +16,7 @@ export async function POST(request: Request) {
   formBody.set("username", body.username);
   formBody.set("password", body.password);
 
-  const backendResponse = await fetch("http://localhost:8000/auth/login", {
+  const backendResponse = await fetch(getBackendUrl("/auth/login"), {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

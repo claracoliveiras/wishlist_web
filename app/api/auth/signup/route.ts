@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getBackendUrl } from "@/lib/backend-url";
 
 export async function POST(request: Request) {
   const body = (await request.json()) as {
@@ -9,7 +10,7 @@ export async function POST(request: Request) {
     banner_picture: string;
   };
 
-  const backendResponse = await fetch("http://localhost:8000/users", {
+  const backendResponse = await fetch(getBackendUrl("/users"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
