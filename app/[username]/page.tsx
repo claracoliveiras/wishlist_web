@@ -2,6 +2,7 @@ import Collection from "@/components/profile/Collection";
 import ProfileButton from "@/components/profile/ProfileButton";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import WishlistItem from "@/components/profile/WishlistItem";
+import { getUserProfile } from "@/lib/api/profile";
 import { UserRoundPlus, UserRoundX } from "lucide-react";
 
 export default async function Page({
@@ -10,13 +11,14 @@ export default async function Page({
   params: Promise<{ username: string }>
 }) {
   const { username } = await params;
+  const profileData = await getUserProfile({username});
 
   return (
     <div className="flex flex-col justify-center items-center my-6 w-[50vw] mx-auto">
         <ProfileHeader
-          username={username}
-          bannerSrc="https://i.pinimg.com/1200x/59/1d/ea/591dea585e481b60a60358fd8e3ebcb3.jpg"
-          avatarSrc="https://i.pinimg.com/736x/00/3e/31/003e313f10a523c1830366f143c1318e.jpg"
+          username={ username }
+          banner_picture={profileData.banner_picture}
+          profile_picture={profileData.profile_picture}
         />
 
         <div className="mt-4">

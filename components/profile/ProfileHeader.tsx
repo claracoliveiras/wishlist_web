@@ -1,25 +1,24 @@
 type ProfileHeaderProps = {
   username: string;
-  bannerSrc: string;
-  avatarSrc: string;
+  banner_picture: string;
+  profile_picture: string;
 };
 
 export default function ProfileHeader({
-  username,
-  bannerSrc,
-  avatarSrc,
+  username, banner_picture, profile_picture
 }: ProfileHeaderProps) {
+
   return (
     <div className="flex flex-col items-center w-full">
       <div className="relative flex w-full flex-col">
         <img
           className="h-[10vw] w-full rounded-[20px] object-cover"
-          src={bannerSrc}
+          src={banner_picture}
           alt={`${username} banner`}
         />
         <img
           className="absolute left-1/2 -bottom-[3vw] h-[6vw] w-[6vw] -translate-x-1/2 rounded-2xl object-cover"
-          src={avatarSrc}
+          src={profile_picture}
           alt={`${username} profile`}
         />
       </div>
@@ -27,3 +26,5 @@ export default function ProfileHeader({
     </div>
   );
 }
+
+
