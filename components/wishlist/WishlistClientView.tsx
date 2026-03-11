@@ -11,19 +11,25 @@ import { useState } from "react";
 
 type WishlistClientViewProps = {
   items: WishlistItemData[];
+  canManageItems: boolean;
 };
 
-export default function WishlistClientView({ items }: WishlistClientViewProps) {
+export default function WishlistClientView({
+  items,
+  canManageItems,
+}: WishlistClientViewProps) {
   const [editMode, setEditMode] = useState(false);
 
   return (
     <>
       <div className="mt-4">
         <ProfileButton icon={UserRoundPlus} />
-        <EditButton
-          icon={Pen}
-          onClick={() => setEditMode((current) => !current)}
-        />
+        {canManageItems ? (
+          <EditButton
+            icon={Pen}
+            onClick={() => setEditMode((current) => !current)}
+          />
+        ) : null}
       </div>
 
       {/* ADDING COLLECTIONS */}
@@ -33,7 +39,7 @@ export default function WishlistClientView({ items }: WishlistClientViewProps) {
       </div>
 
       <div className="mt-6 grid w-full grid-cols-3 gap-4">
-        <AddNewItemButton />
+        {canManageItems ? <AddNewItemButton /> : null}
         {items.map((item) => (
           <WishlistItem
             key={item.id}
